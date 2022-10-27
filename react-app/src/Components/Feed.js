@@ -1,25 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Post from "./Post";
 import NewPost from "./NewPost";
+import axios from 'axios';
 
 const Feed = () => {
-  // Un-comment the lines below to complete your solution
-  // ====================
+  const [data, setData] = useState();
 
-  // const [_________, _________] = useState();
+  const getPostData = () => {
+    axios.get('http://localhost:3002/posts')
+    .then((data) => setData(data.data))
+    .catch((error) => console.log(error));
+  };
 
-  // const getPostsData = () => {
-  //   axios
-  //     .get(_________) //THIS IS YOUR URL OF YOUR API
-  //     .then(__________) //PROMISE API, THAT MEANS WHEN YOU GET THE DATA WHAT DO I DO WITH IT
-  //     .catch(__________);  //ERROR CATCHING IN CASE WE RECIEVE AN ERROR
-  // };
-
-  // useEffect(() => {
-  //   _________();
-  // }, [])
-
-  // ====================
+  useEffect(() => {
+    getPostData();
+  }, []);
 
   return (
     <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
@@ -29,7 +24,7 @@ const Feed = () => {
         )
       }
 
-      <NewPost __________ />
+      <NewPost getPostData={getPostData} />
     </div>
   )
 

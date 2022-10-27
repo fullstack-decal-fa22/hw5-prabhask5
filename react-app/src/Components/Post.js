@@ -1,4 +1,5 @@
-// ___________________ import statement
+import React from 'react';
+import Comments from './Comments'
 
 const Post = ({ title, body, comments, id }) => {
   console.log(id)
@@ -7,7 +8,7 @@ const Post = ({ title, body, comments, id }) => {
       {title}
     </h3>
     <p>{body}</p>
-    <Comments _________ _________ />
+    <Comments postId={id} initialComments={comments}/>
   </div>
 }
 
